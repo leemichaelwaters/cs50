@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <!-- Require that a user input a stock's symbol as select menu whose name is symbol -->
+            <select class="form-select mx-auto w-auto" name="symbol">
+                <option disabled selected>Symbol</option>
+                {% for stock in portfolio %}
+                    <option value={{ stock.symbol }}>{{ stock.symbol }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <!-- Require that a user input a number off shares, implemented as a text field whose name is shares -->
+            <input autocomplete="off" class="form-control mx-auto w-auto" min="1" name="shares" placeholder="Shares" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}
